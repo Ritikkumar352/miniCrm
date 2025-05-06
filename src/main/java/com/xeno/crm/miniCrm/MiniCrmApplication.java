@@ -1,0 +1,15 @@
+package com.xeno.crm.miniCrm;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class MiniCrmApplication {
+
+	public static void main(String[] args) {
+
+		SpringApplication.run(MiniCrmApplication.class, args);
+		System.out.println("CRM done");
+	}
+
+}
