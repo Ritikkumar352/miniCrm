@@ -1,4 +1,4 @@
-package com.xeno.crm.miniCrm.service.impl;
+package com.xeno.crm.miniCrm.service.Impl;
 
 import com.xeno.crm.miniCrm.dto.CustomerDTO;
 import com.xeno.crm.miniCrm.dto.CustomerResponseDTO;
