@@ -21,9 +21,15 @@ public class Campaign {
     private String name;
     private LocalDateTime timestamp;
     private Long audienceSize;
-    // rule ?
+    // TODO --> rule ?
 
+    // campaign log rel
     @OneToMany(mappedBy = "campaign")
-    private List<CommunicationLog> CommLogs;
+    private List<CommunicationLog> communicationLogs;
+
+    // campaign admin relation
+    @ManyToOne
+    @JoinColumn(name = "created_by", nullable = false)
+    private Admin createdBy; // created by which admin
 
 }

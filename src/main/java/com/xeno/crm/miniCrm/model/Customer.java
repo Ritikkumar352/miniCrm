@@ -37,7 +37,7 @@ public class Customer {
     private Boolean isActive;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> orders;
 
     @PrePersist
     public void prePersist() {
