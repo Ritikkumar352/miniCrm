@@ -20,9 +20,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(auth -> auth
+        http
+//                .csrf(csrf -> csrf.disable()) // for postman only
+                .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login").permitAll()
                         .anyRequest().authenticated()
+//                        .anyRequest().permitAll()   // change to permitAll() for testing in postman and back to authenticated for security
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .userInfoEndpoint(userInfo -> userInfo
