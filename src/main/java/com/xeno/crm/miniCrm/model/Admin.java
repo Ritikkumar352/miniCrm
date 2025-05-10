@@ -34,7 +34,12 @@ public class Admin implements OAuth2User {
 
 
     @OneToMany(mappedBy = "createdBy")
-    private List<Campaign> campaigns;
+    private List<Campaign> campaigns; // mapping check--OK
+
+    // add seg mapping
+    @OneToMany(mappedBy = "createdBy")
+    private List<Segment> segments;  // mapping check--OK
+
 
     @Override
     public java.util.Map<String, Object> getAttributes() {

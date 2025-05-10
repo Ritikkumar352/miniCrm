@@ -26,10 +26,10 @@ public class Customer {
     private String phone;
     private String gender;
     private String address;
-    private String password;
+    private String password;   // remove this after checking usages
 
     private LocalDate registrationDate;
-    private LocalDate lastPurchaseDate;
+    private LocalDate lastPurchaseDate;  // in active from ... how many days
 
     private Integer totalOrders;
     private Double totalSpend;
@@ -37,7 +37,7 @@ public class Customer {
     private Boolean isActive;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders;
+    private List<Order> orders; // mapping check--OK
 
     @PrePersist
     public void prePersist() {
@@ -45,6 +45,8 @@ public class Customer {
     }
 
 
-
+    // logs-customer relation
+    @OneToMany(mappedBy = "customer")
+    private List<CommunicationLog> logs; // mapping check--OK
 
 }

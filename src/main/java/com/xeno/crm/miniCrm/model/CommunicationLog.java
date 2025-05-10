@@ -1,5 +1,6 @@
 package com.xeno.crm.miniCrm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.xeno.crm.miniCrm.model.enums.CampaginStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,12 +22,9 @@ public class CommunicationLog {
     private UUID id;
 
 
-    // connecting campaign
-    @ManyToOne
-    @JoinColumn(name = "campaign_id", nullable = false)
-    private Campaign campaign;
 
-    private UUID customerId;  // to whom
+
+//    private UUID customerId;  // to whom -> TODO need mapping ??
 
     private String message;  // what msg sent
 
@@ -34,5 +32,20 @@ public class CommunicationLog {
     private CampaginStatus status;
 
     private LocalDateTime sentAt;  // msg sent at what time
+
+    // connecting campaign
+    @ManyToOne      // mapping check--OK
+    @JoinColumn(name = "campaign_id", nullable = false)
+    @JsonIgnore
+    private Campaign campaign;  // --> done
+
+
+    // logs-customer relation
+    @ManyToOne  // mapping check--OK
+    @JoinColumn(name = "customer_id", nullable = false)
+    @JsonIgnore
+    private Customer customer;
+
+
 
 }
