@@ -1,6 +1,7 @@
 package com.xeno.crm.miniCrm.util;
 
 import com.xeno.crm.miniCrm.model.Admin;
+import com.xeno.crm.miniCrm.repository.AdminRepo;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -17,3 +18,18 @@ public class SecurityUtils {
         }
     }
 }
+
+
+//    // Testing with default ADMIN
+//    private  final AdminRepo adminRepo;
+//
+//    public SecurityUtils(AdminRepo adminRepo) {
+//        this.adminRepo = adminRepo;
+//    }
+//
+//    public Admin getCurrentAdmin() {
+//        // For testing purposes, always return the default admin
+//        return adminRepo.findByEmail("admin@test.com")
+//                .orElseThrow(() -> new RuntimeException("Default admin not found"));
+//    }
+//}
