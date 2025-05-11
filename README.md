@@ -47,3 +47,124 @@
 -  TODO completee later
 
   ## Admin (creates rules) → Segment (finds matching customers) → Campaign (sends message) → CommunicationLog (tracks delivery)
+
+
+
+# miniCrm
+
+## Local Setup Instructions
+
+### Prerequisites
+- Java 17 or higher
+- MySQL 8.0 or higher
+- Maven
+- Google OAuth credentials
+
+### Steps to Run
+1. Clone the repository
+```bash
+git clone [repository-url]
+cd miniCrm
+```
+
+2. Configure Database
+- Create a MySQL database named `minicrm`
+- Update `application.properties` with your database credentials
+
+3. Configure Google OAuth
+- Go to Google Cloud Console
+- Create a new project
+- Enable Google OAuth2 API
+- Create OAuth 2.0 credentials
+- Add authorized redirect URI: `http://localhost:8080/login/oauth2/code/google`
+- Update `application.properties` with your OAuth credentials
+
+4. Run the Application
+```bash
+mvn spring-boot:run
+```
+
+## Architecture Diagram
+[Insert your Excalidraw diagram here]
+- Database Schema
+- Application Flow
+- Component Interaction
+
+## Tech Stack & Tools
+
+### Backend
+- Java 17
+- Spring Boot 3.x
+- Spring Security
+- Spring Data JPA
+- MySQL
+- Maven
+
+### Frontend
+- React
+- Material-UI
+- Axios
+
+### Development Tools
+- IntelliJ IDEA
+- Postman
+- Git
+
+### AI Tools Used
+- GitHub Copilot for code suggestions
+- ChatGPT for code review and documentation
+- Claude for architecture design
+
+## Known Limitations & Assumptions
+
+### Current Limitations
+1. Authentication
+   - Only Google OAuth supported
+   - Single session per user
+   - No role-based access control
+
+2. Campaign Management
+   - Basic campaign tracking
+   - Limited to email communications
+   - No campaign scheduling
+
+3. Customer Management
+   - Basic customer data model
+   - Limited customer interaction history
+   - No customer feedback system
+
+4. Technical Limitations
+   - No caching implementation
+   - Basic error handling
+   - Limited scalability features
+
+### Assumptions
+1. Business Logic
+   - One admin per organization
+   - Campaigns are email-based
+   - Customer data is manually entered
+
+2. Technical
+   - Single instance deployment
+   - Local development environment
+   - Standard business hours operation
+
+[Your existing content below...]
+
+## Features
+[Your existing features section...]
+
+## OAuth2
+[Your existing OAuth2 section...]
+
+# Segment
+[Your existing Segment section...]
+
+# Rule Eval Service
+[Your existing Rule Eval Service section...]
+
+# Security util
+[Your existing Security util section...]
+
+# STRUCTURE
+[Your existing STRUCTURE section...]
