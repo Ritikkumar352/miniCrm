@@ -1,4 +1,9 @@
 # miniCrm
+
+# UPDATING with proper docs and diagrmas #
+
+
+
 # PUBLIC 
 - To add these (Assignment)
   - Local setup instructions
