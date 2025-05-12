@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.xeno.crm.miniCrm.model.enums.CampaginStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,13 +16,12 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class CommunicationLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
-
 
 
 //    private UUID customerId;  // to whom -> TODO need mapping ??
@@ -45,7 +45,6 @@ public class CommunicationLog {
     @JoinColumn(name = "customer_id", nullable = false)
     @JsonIgnore
     private Customer customer;
-
 
 
 }

@@ -1,37 +1,21 @@
 package com.xeno.crm.miniCrm.util;
 
 import com.xeno.crm.miniCrm.model.Admin;
-import com.xeno.crm.miniCrm.repository.AdminRepo;
 import org.springframework.stereotype.Component;
-//
-//@Component
-//public class SecurityUtils {
-//
-//    public Admin getCurrentAdmin() {
-//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        if (principal instanceof Admin) {
-//            return (Admin) principal;
-//        } else {
-//            throw new RuntimeException("User not logged in");
-//        }
-//    }
-//}
 
+import java.util.UUID;
 
 @Component
 public class SecurityUtils {
 
-    // Testing with default ADMIN
-    private final AdminRepo adminRepo;
-
-    public SecurityUtils(AdminRepo adminRepo) {
-        this.adminRepo = adminRepo;
-    }
-
     public Admin getCurrentAdmin() {
-        // For testing purposes, always return the default admin
-        return adminRepo.findByEmail("admin@test.com")
-                .orElseThrow(() -> new RuntimeException("Default admin not found"));
+        // Always return the hardcoded admin
+        return Admin.builder()
+                .id(UUID.fromString("e9c39bac-acec-4c30-b22f-2d1a848ba6e1"))
+                .name("Ankit")
+                .email("ankit4445401@gmail.com")
+                .googleId("108553240013398675118")
+                .profilePicUrl("https://lh3.googleusercontent.com/a/ACg8ocKt5motOdAkOeBL8L9EhfCqNxY3Whw5sjV37Aj7dLQdbQyD9g=s96-c")
+                .build();
     }
 }

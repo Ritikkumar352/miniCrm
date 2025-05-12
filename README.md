@@ -85,7 +85,7 @@ mvn spring-boot:run
 ```
 
 ## Architecture Diagram
-[Insert your Excalidraw diagram here]
+
 - Database Schema
 - Application Flow
 - Component Interaction
@@ -149,22 +149,20 @@ mvn spring-boot:run
    - Local development environment
    - Standard business hours operation
 
-[Your existing content below...]
 
 ## Features
-[Your existing features section...]
+
 
 ## OAuth2
-[Your existing OAuth2 section...]
+
 
 # Segment
-[Your existing Segment section...]
+
 
 # Rule Eval Service
-[Your existing Rule Eval Service section...]
+
 
 # Security util
-[Your existing Security util section...]
+
 
 # STRUCTURE
-[Your existing STRUCTURE section...]

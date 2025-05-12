@@ -3,6 +3,7 @@ package com.xeno.crm.miniCrm.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Campaign {
 
     @Id
@@ -26,6 +28,7 @@ public class Campaign {
     @Column(columnDefinition = "TEXT")
     private String segmentRule;  // snapshot of segment rule
 
+    private String message;
 
 
     // campaign log rel

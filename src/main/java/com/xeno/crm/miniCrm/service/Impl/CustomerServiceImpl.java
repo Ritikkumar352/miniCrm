@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
     public ResponseEntity<Map<String, String>> registerCustomer(CustomerDTO customerDTO) {
         Customer customer = new Customer();
         customer.setName(customerDTO.getName());
-        customer.setPassword(customerDTO.getPassword()); // Password hashing can be done later
+//        customer.setPassword(customerDTO.getPassword()); // Password hashing can be done later
         customer.setEmail(customerDTO.getEmail());
         customer.setPhone(customerDTO.getPhone());
         customerRepo.save(customer);
@@ -76,7 +76,7 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setName(customerDTO.getName());
         customer.setPhone(customerDTO.getPhone());
         customer.setEmail(customerDTO.getEmail());
-        customer.setPassword(customerDTO.getPassword()); // will hash this
+//        customer.setPassword(customerDTO.getPassword()); // will hash this
 
         customerRepo.save(customer);
 

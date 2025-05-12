@@ -23,7 +23,7 @@ public class CustomerDTO {
     // )
     @NotBlank(message = "Password is required")
     @Size(min = 6, max = 16, message = "Password must be between 6 and 16 characters")
-    private String password;
+//    private String password;
 
     @NotBlank(message = "Email is required")
     @Pattern(

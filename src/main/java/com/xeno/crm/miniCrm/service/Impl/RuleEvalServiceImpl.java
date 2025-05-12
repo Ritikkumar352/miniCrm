@@ -1,8 +1,10 @@
 package com.xeno.crm.miniCrm.service.Impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xeno.crm.miniCrm.dto.ConditionDto;
 import com.xeno.crm.miniCrm.dto.RuleDto;
 import com.xeno.crm.miniCrm.model.Customer;
+import com.xeno.crm.miniCrm.model.Segment;
 import com.xeno.crm.miniCrm.repository.CustomerRepo;
 import com.xeno.crm.miniCrm.service.RuleEvalService;
 import jakarta.persistence.EntityManager;
@@ -19,9 +21,11 @@ public class RuleEvalServiceImpl implements RuleEvalService {
     @PersistenceContext
     private EntityManager entityManager;
     private final CustomerRepo customerRepo;
+    private final ObjectMapper objectMapper;
 
-    public RuleEvalServiceImpl(CustomerRepo customerRepo) {
+    public RuleEvalServiceImpl(CustomerRepo customerRepo, ObjectMapper objectMapper) {
         this.customerRepo = customerRepo;
+        this.objectMapper = objectMapper;
     }
 
     public long countMatchingCustomers(RuleDto rules) {
@@ -35,6 +39,20 @@ public class RuleEvalServiceImpl implements RuleEvalService {
         Query query = entityManager.createQuery(jpql);
         query.setMaxResults(limit);
         return query.getResultList();
+    }
+
+    // 3.
+
+    @Override
+    public List<Customer> getMatchingCustomers(Segment segment) {
+        try {
+            RuleDto rules = objectMapper.readValue(segment.getRuleDefinition(), RuleDto.class);
+            String jpql = "SELECT c FROM Customer c WHERE " + translateRulesToJpql(rules);
+            Query query = entityManager.createQuery(jpql);
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to get matching customers for segment", e);
+        }
     }
 
     private String translateRulesToJpql(RuleDto rule) {
