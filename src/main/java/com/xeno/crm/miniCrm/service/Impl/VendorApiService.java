@@ -1,4 +1,4 @@
-package com.xeno.crm.miniCrm.service;
+package com.xeno.crm.miniCrm.service.Impl;
 
 import com.xeno.crm.miniCrm.model.Customer;
 import org.springframework.stereotype.Service;

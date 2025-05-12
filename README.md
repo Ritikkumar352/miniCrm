@@ -1,168 +1,160 @@
 # miniCrm
-# PUBLIC 
-- To add these (Assignment)
-  - Local setup instructions
-  -  Architecture diagram --> https://excalidraw.com/ and add db diagrm 
-  -  Summary of AI tools and other tech used
-  -  Known limitations or assumptions
 
-## Features
-
-- Register, Get all customer pagnited, get a customer, update and delete a customer
-
-- added oauth2 using google login
-- saving user when login for the first time  
-
-## OAuth2
-- public class OAuthServiceImpl implements OAuth2UserService<R,U>
-- R -> google object , U-> my entity 
-- we cannot directly save details from oauth2 to our db
-
-# Segment
-- customer count-> fetch from db and count according to rule -> then return that count
-
-# Rule Eval Service
-- using JPQL , custom query to fetch customer as per the segment rule / condition
-
-# Security util
-- using security to get details about currently logged in admin from spring security
-
-
-
-# STRUCTURE
-## 1. Admin 
-- Admin creates rules (>1000 spend or account older thant 1 year)
-- These rulese are stored in segment
-
-## 2. Segment
-- Filter , find customers with these rules
-- show number of customers for these conditions / rules
-
-## 3. Campaign
-- Message template
-- Using segment it knows where to send mesages
-
-# 4. Communication log 
-- Record/ history
--  TODO completee later
-
-  ## Admin (creates rules) → Segment (finds matching customers) → Campaign (sends message) → CommunicationLog (tracks delivery)
-
-
-
-# miniCrm
 
 ## Local Setup Instructions
 
 ### Prerequisites
-- Java 17 or higher
-- MySQL 8.0 or higher
-- Maven
-- Google OAuth credentials
+
+* Java 17 or higher
+* MySQL 8.0 or higher
+* Maven
+* Google OAuth credentials
 
 ### Steps to Run
+
 1. Clone the repository
+
 ```bash
-git clone [repository-url]
+git clone https://github.com/Ritikkumar352/miniCrm.git
 cd miniCrm
 ```
 
 2. Configure Database
-- Create a MySQL database named `minicrm`
-- Update `application.properties` with your database credentials
+
+* Create a MySQL database named `minicrm`
+* Update `application.properties` with your DB credentials
 
 3. Configure Google OAuth
-- Go to Google Cloud Console
-- Create a new project
-- Enable Google OAuth2 API
-- Create OAuth 2.0 credentials
-- Add authorized redirect URI: `http://localhost:8080/login/oauth2/code/google`
-- Update `application.properties` with your OAuth credentials
+
+* Go to Google Cloud Console
+* Create a project and enable Google OAuth2 API
+* Create OAuth 2.0 credentials
+* Add authorized redirect URI:
+
+   * `http://localhost:8080/login/oauth2/code/google`
+   * Or deployed domain,:-
+     `https://main.d3pha96ypv251i.amplifyapp.com/login/oauth2/code/google`
+* Add your deployed domain under **Authorized JavaScript Origins**
+* Add it under **Authorized Domains** in Firebase (if using Firebase frontend)
+* Update `application.properties` with client ID and secret
 
 4. Run the Application
+
 ```bash
 mvn spring-boot:run
 ```
 
+---
+
+
+# STRUCTURE
+
+## 1. Admin
+
+* Admin creates segment rules (e.g., spend > 1000 or joined before 2020)
+
+## 2. Segment
+
+* Stores rules and descriptions
+* Filters customers matching those rules
+* Displays matching customer count
+
+## 3. Campaign
+
+* Campaign uses a segment to decide target audience
+* Contains message template to send to matched users
+
+## 4. Communication Log
+
+* Records message delivery attempts and their statuses (e.g., SENT / FAILED)
+* Simulates \~90% success using a dummy delivery API
+
+**Flow:**
+**Admin (creates rules)** → **Segment (filters customers)** → **Campaign (uses segment)** → **CommunicationLog (tracks delivery)**
+
+---
+
+
 ## Architecture Diagram
 
-- Database Schema
-- Application Flow
-- Component Interaction
+* Visual representation of how the app flows between modules
+
+![Application Flow](images/Application-flow.jpeg)
+
+---
+
+* Planned DB Schema (Design Phase)
+![Planned Schema](images/xeno-crm-db-rel.png)
+
+---
+
+* ER diagram generated after implementing the DB schema  (changed some attributes while implementing**)
+
+![Database Diagram](images/img.png)
+
+
+---
 
 ## Tech Stack & Tools
 
 ### Backend
-- Java 17
-- Spring Boot 3.x
-- Spring Security
-- Spring Data JPA
-- MySQL
-- Maven
+
+* Java 17
+* Spring Boot 3.x
+* Spring Security
+* Spring Data JPA
+* MySQL
+* Maven
 
 ### Frontend
-- React
-- Material-UI
-- Axios
+
+* React
+* Tailwind
+* Axios
 
 ### Development Tools
-- IntelliJ IDEA
-- Postman
-- Git
 
-### AI Tools Used
-- GitHub Copilot for code suggestions
-- ChatGPT for code review and documentation
-- Claude for architecture design
+* IntelliJ IDEA
+* VS Code
+* Postman
+* Git
 
-## Known Limitations & Assumptions
+--- 
 
-### Current Limitations
-1. Authentication
-   - Only Google OAuth supported
-   - Single session per user
-   - No role-based access control
-
-2. Campaign Management
-   - Basic campaign tracking
-   - Limited to email communications
-   - No campaign scheduling
-
-3. Customer Management
-   - Basic customer data model
-   - Limited customer interaction history
-   - No customer feedback system
-
-4. Technical Limitations
-   - No caching implementation
-   - Basic error handling
-   - Limited scalability features
-
-### Assumptions
-1. Business Logic
-   - One admin per organization
-   - Campaigns are email-based
-   - Customer data is manually entered
-
-2. Technical
-   - Single instance deployment
-   - Local development environment
-   - Standard business hours operation
 
 
 ## Features
 
+* Register, get all customers paginated, get a customer, update and delete a customer
+* OAuth2 login via Google
+* Save user to database on first login
 
 ## OAuth2
 
+* `OAuthServiceImpl implements OAuth2UserService<R, U>`
 
-# Segment
+   * `R` is the Google OAuth object
+   * `U` is the Admin entity (our DB model)
+* We cannot directly save OAuth2User to our DB
+* Google login is integrated using Spring Security
+
+## Segment
+
+* Segment stores admin-defined rules (e.g., spend > 1000)
+* Fetches matching customers from DB using these rules
+* Returns count of matching customers per rule
+
+## Rule Eval Service
+
+* Uses JPQL and custom queries
+* Dynamically applies segment rules to customer data
+
+## Security Util
+
+* Provides helper functions to get the currently logged-in Admin
+* Uses Spring Security's context
+
+---
 
 
-# Rule Eval Service
 
-
-# Security util
-
-
-# STRUCTURE

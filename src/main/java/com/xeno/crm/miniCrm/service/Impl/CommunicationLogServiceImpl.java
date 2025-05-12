@@ -6,7 +6,6 @@ import com.xeno.crm.miniCrm.model.CommunicationLog;
 import com.xeno.crm.miniCrm.model.enums.CampaginStatus;
 import com.xeno.crm.miniCrm.repository.CommunicationLogRepo;
 import com.xeno.crm.miniCrm.service.CommunicationLogService;
-import com.xeno.crm.miniCrm.service.VendorApiService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
