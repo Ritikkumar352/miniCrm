@@ -100,7 +100,7 @@ mvn spring-boot:run
 ### Backend
 
 * Java 17
-* Spring Boot 3.x
+* Spring Boot 3.4.5
 * Spring Security
 * Spring Data JPA
 * MySQL
@@ -155,6 +155,14 @@ mvn spring-boot:run
 * Uses Spring Security's context
 
 ---
+
+# ✅ Brownie Points
+
+- Currently working on Batch processing 
+
+- I'll Update this application with Redis Implementation.
+
+
 
 
 
