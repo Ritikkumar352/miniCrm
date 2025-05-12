@@ -1,5 +1,22 @@
 # miniCrm
 
+--- 
+
+## ✅ Brownie Points Update 
+- Updated the code with batch processing using Redis Publisher subscriber Model
+
+  ## How It Works Now (flow) -->
+
+  - controller sends batch delivery updates to Redis.
+
+  - Redis passes the updates to the RedisSubscriber.
+
+  - RedisSubscriber updates the status in the database asynchronously which was updating one at a time directly to the DB 
+
+  - using redis docker image to run redis expose to port '6379' 
+
+    ``` docker run --name redis -p 6379:6379 -d redis```
+--- 
 
 ## Local Setup Instructions
 
